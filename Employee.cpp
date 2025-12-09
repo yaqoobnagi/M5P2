@@ -2,22 +2,29 @@
 
 Employee::Employee() {
     name = "";
-    employeeNumber = "";
+    employeeNumber = 0;
     hireDate = "";
 }
 
-Employee::Employee(string n, string num, string date) {
-    name = n;
-    employeeNumber = num;
-    hireDate = date;
+Employee::Employee(string n, int num, string date) {
+    setName(n);
+    setEmployeeNumber(num);  // VALIDATED
+    setHireDate(date);
 }
 
 void Employee::setName(string n) { name = n; }
-void Employee::setEmployeeNumber(string num) { employeeNumber = num; }
+
+void Employee::setEmployeeNumber(int num) {
+    if (num < 0 || num > 9999) {
+        throw InvalidEmployeeNumber();
+    }
+    employeeNumber = num;
+}
+
 void Employee::setHireDate(string date) { hireDate = date; }
 
 string Employee::getName() const { return name; }
-string Employee::getEmployeeNumber() const { return employeeNumber; }
+int Employee::getEmployeeNumber() const { return employeeNumber; }
 string Employee::getHireDate() const { return hireDate; }
 
 void Employee::printEmployee() const {
